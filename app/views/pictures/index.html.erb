@@ -1,31 +1,30 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Pictures</h1>
+<h1>Home</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Cotent</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pictures.each do |picture| %>
+  <% @pictures.each do |picture| %>
+    <tbody>
       <tr>
-        <td><%= picture.image %></td>
-        <td><%= picture.cotent %></td>
-        <td><%= picture.user %></td>
-        <td><%= link_to 'Show', picture %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= picture.user.name %></td>
       </tr>
-    <% end %>
-  </tbody>
+      <tr>
+        <td><%= picture.content %></td>
+      </tr>
+      <tr>
+        <td><%= image_tag(picture.image.url) %></td>
+      </tr>
+    </tbody>
+    <tfooter>
+      <tr>
+        <td>
+          <%= link_to 'Show', picture %>
+          <% if picture.user.id == current_user.id %>
+            <%= link_to 'Edit', edit_picture_path(picture) %>
+            <%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+    </tfooter>
+
+  <% end %>
 </table>
-
-<br>
-
-<%= link_to 'New Picture', new_picture_path %>
+<%= link_to '投稿する', new_picture_path %>

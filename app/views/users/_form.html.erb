@@ -1,37 +1,27 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
   </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_digest %>
-    <%= form.text_field :password_digest %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+<% end %>
+<%= form_with(model: @user, local: true) do |f| %>
+  <div class="input_area">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "your user name" %>
+    <%= f.label :profile_image %>
+    <%= f.file_field :image, id: :user_image %>
+    <%= f.hidden_field :image_cache %>
+    <%= f.label :email %>
+    <%= f.email_field :email, placeholder: "your email" %>
+    <%= f.label :password %>
+    <%= f.password_field :password, placeholder: "password" %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, placeholder: "type same password" %>
+    <br>
+    <%= f.submit yield(:button_text), class: 'button' %>
   </div>
 <% end %>

@@ -1,24 +1,12 @@
-<p id="notice"><%= notice %></p>
-
+  
+<h1><%= @user.name %>のページ</h1>
 <p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+  プロフィール画像：
+  <% if @user.image? %>
+    <%= image_tag @user.image.url %>
+  <% end %>
 </p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @user.image %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p>メールアドレス: <%= @user.email %></p>
+<%= link_to 'Post', new_picture_path %>
+<br>
+<%= link_to 'プロフィールの編集', edit_user_path(current_user.id)%>

@@ -1,8 +1,7 @@
-<%= form_with(model: picture, local: true) do |form| %>
+<%= form_with(model: picture, local: true, url:choose_new_or_edit) do |form| %>
   <% if picture.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
-
       <ul>
       <% picture.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,23 +9,14 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+  <div class="input_area">
+    <%= form.label :content %>
+    <%= form.text_area :content, placeholder: "What are you doing?" %>
     <%= form.label :image %>
-    <%= form.text_area :image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cotent %>
-    <%= form.text_area :cotent %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
+    <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
+    <br>
+    <%= form.submit 'create new post', class: 'button' %>
   </div>
 <% end %>
