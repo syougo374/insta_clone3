@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_04_24_095831) do
 
   create_table "pictures", force: :cascade do |t|
     t.text "image"
-    t.text "cotent"
+    t.text "content"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
