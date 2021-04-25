@@ -127,6 +127,8 @@ GEM
     nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    nokogiri (1.11.3-x86_64-linux)
+      racc (~> 1.4)
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (3.12.6)
@@ -216,6 +218,7 @@ GEM
 
 PLATFORMS
   -darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   bcrypt (= 3.1.11)
@@ -243,4 +246,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   2.2.15
+   2.2.16
